@@ -12,8 +12,8 @@
         "main.ts",
         "README.md",
         "UBit.ts",
-        "_locales/en/fwd-ubit-strings.json",
-        "_locales/en/fwd-ubit-jsdoc-strings.json"
+        "_locales/es-ES/fwd-ubit-strings.json",
+        "_locales/es-ES/fwd-ubit-jsdoc-strings.json"
     ],
     "testFiles": ["test.ts"],
     "targetVersions": {
