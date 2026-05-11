@@ -1,0 +1,16 @@
+{
+    "UBit.ConWiFi|block": "Connect to network $WiFi with password $Pssw",
+    "UBit.ExternalSensors|block": "Use sensors from external micro:bit $channel",
+    "UBit.Icon|block": "Enable icons with audio $yes",
+    "UBit.RepNumtwithScreen|block": "Show number $message with audio",
+    "UBit.RepTextwithScreen|block": "Show string $message with audio",
+    "UBit.RepText|block": "Play $message via audio",
+    "UBit.getDirection|block": "Compass heading from external micro:bit",
+    "UBit.getLight|block": "Light level from external micro:bit",
+    "UBit.getSound|block": "Sound level from external micro:bit",
+    "UBit.getTemperature|block": "Temperature (°C) from external micro:bit",
+    "UBit.onGestureReceived|block": "When external micro:bit is $gesture",
+    "UBit.shareSensorsWithUBit|block": "Share sensors with UBit $int",
+    "UBit|block": "UBit",
+    "{id:category}UBit": "UBit"
+}

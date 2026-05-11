@@ -1,5 +1,5 @@
 {
-    "name": "UBit",
+    "name": "fwd-ubit",
     "version": "1.2.1",
     "description": "",
     "dependencies": {
@@ -11,17 +11,15 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "UBit.ts"
+        "UBit.ts",
+        "_locales/en/fwd-ubit-strings.json",
+        "_locales/en/fwd-ubit-jsdoc-strings.json"
     ],
-    "testFiles": [
-        "test.ts"
-    ],
+    "testFiles": ["test.ts"],
     "targetVersions": {
         "target": "7.0.61",
         "targetId": "microbit"
     },
-    "supportedTargets": [
-        "microbit"
-    ],
+    "supportedTargets": ["microbit"],
     "preferredEditor": "tsprj"
 }

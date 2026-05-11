@@ -1,0 +1,16 @@
+{
+    "UBit": "Custom blocks",
+    "UBit.ConWiFi": "Connects the UBit to the desired network. \r\nIf this block is not used, it will connect to the Ceibal network.",
+    "UBit.ExternalSensors": "Use external micro:bit sensors",
+    "UBit.Icon": "Enables/disables audio output for the \r\nicons shown on the micro:bit display.",
+    "UBit.RepNumtwithScreen": "Plays the text or number via audio on the UBit and displays it on the screen.",
+    "UBit.RepText": "Plays the written text via audio on the UBit.",
+    "UBit.RepTextwithScreen": "Plays the text or number via audio on the UBit and displays it on the screen.",
+    "UBit.getDirection": "Compass heading from external micro:bit",
+    "UBit.getLight": "Get light level from an external micro:bit",
+    "UBit.getSound": "Get sound level from an external micro:bit",
+    "UBit.getTemperature": "Get the temperature in Celsius from a specified micro:bit.",
+    "UBit.onGestureReceived": "Runs an action when a specific gesture is received via radio.",
+    "UBit.shareSensorsWithUBit": "Selects a radio channel to send the \r\ndata requested by the micro:bit connected to the UBit.",
+    "_remoteLight": "Use this file to define custom functions and blocks.\r\nRead more at https://makecode.microbit.org/blocks/custom"
+}
