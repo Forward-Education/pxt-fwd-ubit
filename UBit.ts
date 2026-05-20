@@ -159,20 +159,26 @@ function handleMessage(msg: string): void {
 //% weight=100 color=#226F54 icon="\uf29a"
 namespace UBit {
     /**
-     * Plays the text or number via audio on the UBit and displays it on the screen.
+     * Plays the text via audio on the UBit and displays it on the screen.
      */
     //% block="Show string $message with audio"
     //% message.shadow="text"
-    export function RepTextwithScreen(message: string | number) {
-        let textString;
-        if (typeof message !== "string") {
-            textString = message.toString();
-        } else {
-            textString = message;
-        }
+    export function RepTextwithScreen(message: string) {
         StopI2CScreen = 1;
-        sendTextBuffer(textString);
-        basic.showString(textString);
+        sendTextBuffer(message);
+        basic.showString(message);
+        StopI2CScreen = 0;
+    }
+
+    /**
+     * Plays the number via audio on the UBit and displays it on the screen.
+     */
+    //% block="Show number $num with audio"
+    export function RepNumberwithScreen(num: number) {
+        const numString = num.toString()
+        StopI2CScreen = 1;
+        sendTextBuffer(numString);
+        basic.showString(numString);
         StopI2CScreen = 0;
     }
 
