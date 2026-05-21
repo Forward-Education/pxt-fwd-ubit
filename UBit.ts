@@ -205,21 +205,21 @@ namespace UBit {
         str = "";
     }
 
-    /**
-     * Enables/disables audio output for the
-     * icons shown on the micro:bit display.
-     */
-    //% block="Enable icons with audio $yes"
-    //% yes.shadow="toggleOnOff"
-    export function Icon(yes: boolean) {
-        if (yes) {
-            loops.everyInterval(I2C_TIME_INTERVAL, function () {
-                if (StopI2CScreen == 0) {
-                    sendIconBuffer();
-                }
-            });
-        }
-    }
+    // /**
+    //  * Enables/disables audio output for the
+    //  * icons shown on the micro:bit display.
+    //  */
+    // //% block="Enable icons with audio $yes"
+    // //% yes.shadow="toggleOnOff"
+    // export function Icon(yes: boolean) {
+    //     if (yes) {
+    //         loops.everyInterval(I2C_TIME_INTERVAL, function () {
+    //             if (StopI2CScreen == 0) {
+    //                 sendIconBuffer();
+    //             }
+    //         });
+    //     }
+    // }
 
     /**
      * Get the temperature in Celsius from a specified remote micro:bit.
