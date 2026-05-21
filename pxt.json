@@ -1,7 +1,7 @@
 {
     "name": "fwd-ubit",
-    "version": "1.2.1",
-    "description": "",
+    "version": "0.0.1",
+    "description": "This extension supports ubit, an accessibility device for the micro:bit.",
     "dependencies": {
         "core": "*",
         "radio": "*",
@@ -11,7 +11,7 @@
         "main.blocks",
         "main.ts",
         "README.md",
-        "UBit.ts",
+        "ubit.ts",
         "_locales/es-ES/fwd-ubit-strings.json",
         "_locales/es-ES/fwd-ubit-jsdoc-strings.json"
     ],

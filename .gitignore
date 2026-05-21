@@ -1,5 +1,4 @@
-node_modules
 pxt_modules
-package.json
-package-lock.json
 built
+tsconfig.json
+mkc.json
