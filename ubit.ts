@@ -157,241 +157,250 @@ namespace fwdUbit {
         }
     }
 
-    
+    /**
+     * Plays the text via audio on the UBit and displays it on the screen.
+     */
+    //% block="show string $message with audio"
+    //% message.shadow="text"
+    //% blockId=fwd_ubit_rep_text_with_screen
+    export function RepTextwithScreen(message: string) {
+        StopI2CScreen = 1
+        sendTextBuffer(message)
+        basic.showString(message)
+        StopI2CScreen = 0
+    }
 
-        /**
-         * Plays the text via audio on the UBit and displays it on the screen.
-         */
-        //% block="show string $message with audio"
-        //% message.shadow="text"
-        export function RepTextwithScreen(message: string) {
-            StopI2CScreen = 1
-            sendTextBuffer(message)
-            basic.showString(message)
-            StopI2CScreen = 0
-        }
+    /**
+     * Plays the number via audio on the UBit and displays it on the screen.
+     */
+    //% block="show number $message with audio"
+    //% blockId=fwd_ubit_rep_numt_with_screen
+    export function RepNumtwithScreen(message: number) {
+        let textString = message.toString()
+        StopI2CScreen = 1
+        sendTextBuffer(textString)
+        basic.showString(textString)
+        StopI2CScreen = 0
+    }
 
-        /**
-         * Plays the number via audio on the UBit and displays it on the screen.
-         */
-        //% block="show number $message with audio"
-        export function RepNumtwithScreen(message: number) {
-            let textString = message.toString()
-            StopI2CScreen = 1
-            sendTextBuffer(textString)
-            basic.showString(textString)
-            StopI2CScreen = 0
-        }
+    /**
+     * Plays the written text via audio on the UBit.
+     */
+    //% block="play $message via audio"
+    //% message.shadow="text"
+    //% blockId=fwd_ubit_rep_text
+    export function RepText(message: string) {
+        StopI2CScreen = 1
+        sendTextBuffer(message)
+        StopI2CScreen = 0
+    }
 
-        /**
-         * Plays the written text via audio on the UBit.
-         */
-        //% block="play $message via audio"
-        //% message.shadow="text"
-        export function RepText(message: string) {
-            StopI2CScreen = 1
-            sendTextBuffer(message)
-            StopI2CScreen = 0
-        }
+    /**
+     * Connects the UBit to the desired network.
+     * If this block is not used, it will connect to the Ceibal network.
+     */
+    //% block="connect to network $WiFi with password $Pssw"
+    //% blockId=fwd_ubit_con_wifi
+    export function ConWiFi(WiFi: string, Pssw: string) {
+        StopI2CScreen = 1
+        sendWiFiBuffer(WiFi, Pssw)
+        StopI2CScreen = 0
+        str = ""
+    }
 
-        /**
-         * Connects the UBit to the desired network.
-         * If this block is not used, it will connect to the Ceibal network.
-         */
-        //% block="connect to network $WiFi with password $Pssw"
-        export function ConWiFi(WiFi: string, Pssw: string) {
-            StopI2CScreen = 1
-            sendWiFiBuffer(WiFi, Pssw)
-            StopI2CScreen = 0
-            str = ""
-        }
+    // This functionality is not supported by the firmware and has been cut from the requirements
+    // /**
+    //  * Enables/disables audio output for the
+    //  * icons shown on the micro:bit display.
+    //  */
+    // //% block="Enable icons with audio $yes"
+    // //% yes.shadow="toggleOnOff"
+    // export function Icon(yes: boolean) {
+    //     if (yes) {
+    //         loops.everyInterval(I2C_TIME_INTERVAL, function () {
+    //             if (StopI2CScreen == 0) {
+    //                 sendIconBuffer();
+    //             }
+    //         });
+    //     }
+    // }
 
-        // /**
-        //  * Enables/disables audio output for the
-        //  * icons shown on the micro:bit display.
-        //  */
-        // //% block="Enable icons with audio $yes"
-        // //% yes.shadow="toggleOnOff"
-        // export function Icon(yes: boolean) {
-        //     if (yes) {
-        //         loops.everyInterval(I2C_TIME_INTERVAL, function () {
-        //             if (StopI2CScreen == 0) {
-        //                 sendIconBuffer();
-        //             }
-        //         });
-        //     }
-        // }
+    /**
+     * Get the temperature in Celsius from a specified remote micro:bit.
+     */
+    //% block="temperature (°C) from external micro:bit"
+    //% blockId=fwd_ubit_get_temperature
+    export function getTemperature(): number {
+        _remoteTemperature = -999
+        _waitingForTemperature = true
+        _responseTemperature = false
 
-        /**
-         * Get the temperature in Celsius from a specified remote micro:bit.
-         */
-        //% block="temperature (°C) from external micro:bit"
-        export function getTemperature(): number {
-            _remoteTemperature = -999
-            _waitingForTemperature = true
-            _responseTemperature = false
+        radio.sendString("Tem")
 
-            radio.sendString("Tem")
+        const startTime = control.millis()
+        const timeout = 1000
 
-            const startTime = control.millis()
-            const timeout = 1000
-
-            while (control.millis() - startTime < timeout) {
-                if (_responseTemperature) {
-                    return _remoteTemperature
-                }
-                basic.pause(20)
+        while (control.millis() - startTime < timeout) {
+            if (_responseTemperature) {
+                return _remoteTemperature
             }
-
-            _waitingForTemperature = false
-            return -999
+            basic.pause(20)
         }
 
-        /**
-         * Get the light level from an external micro:bit.
-         */
-        //% block="light level from external micro:bit"
-        export function getLight(): number {
-            _remoteLight = -999
-            _waitingForLight = true
-            _responseLight = false
+        _waitingForTemperature = false
+        return -999
+    }
 
-            radio.sendString("Lig")
+    /**
+     * Get the light level from an external micro:bit.
+     */
+    //% block="light level from external micro:bit"
+    //% blockId=fwd_ubit_get_light
+    export function getLight(): number {
+        _remoteLight = -999
+        _waitingForLight = true
+        _responseLight = false
 
-            const startTime = control.millis()
-            const timeout = 1000
+        radio.sendString("Lig")
 
-            while (control.millis() - startTime < timeout) {
-                if (_responseLight) {
-                    return _remoteLight
-                }
-                basic.pause(20)
+        const startTime = control.millis()
+        const timeout = 1000
+
+        while (control.millis() - startTime < timeout) {
+            if (_responseLight) {
+                return _remoteLight
             }
-
-            _waitingForLight = false
-            return -999
+            basic.pause(20)
         }
 
-        /**
-         * Get the sound level from an external micro:bit.
-         */
-        //% block="sound level from external micro:bit"
-        export function getSound(): number {
-            _remoteSound = -999
-            _waitingForSound = true
-            _responseSound = false
+        _waitingForLight = false
+        return -999
+    }
 
-            radio.sendString("Sou")
+    /**
+     * Get the sound level from an external micro:bit.
+     */
+    //% block="sound level from external micro:bit"
+    //% blockId=fwd_ubit_get_sound
+    export function getSound(): number {
+        _remoteSound = -999
+        _waitingForSound = true
+        _responseSound = false
 
-            const startTime = control.millis()
-            const timeout = 1000
+        radio.sendString("Sou")
 
-            while (control.millis() - startTime < timeout) {
-                if (_responseSound) {
-                    return _remoteSound
-                }
-                basic.pause(20)
+        const startTime = control.millis()
+        const timeout = 1000
+
+        while (control.millis() - startTime < timeout) {
+            if (_responseSound) {
+                return _remoteSound
             }
-
-            _waitingForSound = false
-            return -999
+            basic.pause(20)
         }
 
-        /**
-         * Get the compass heading from an external micro:bit.
-         */
-        //% block="compass heading from external micro:bit"
-        export function getDirection(): number {
-            _remoteDirection = -999
-            _waitingForDirection = true
-            _responseDirection = false
+        _waitingForSound = false
+        return -999
+    }
 
-            radio.sendString("Dir")
+    /**
+     * Get the compass heading from an external micro:bit.
+     */
+    //% block="compass heading from external micro:bit"
+    //% blockId=fwd_ubit_get_direction
+    export function getDirection(): number {
+        _remoteDirection = -999
+        _waitingForDirection = true
+        _responseDirection = false
 
-            const startTime = control.millis()
-            const timeout = 1000
+        radio.sendString("Dir")
 
-            while (control.millis() - startTime < timeout) {
-                if (_responseDirection) {
-                    return _remoteDirection
-                }
-                basic.pause(20)
+        const startTime = control.millis()
+        const timeout = 1000
+
+        while (control.millis() - startTime < timeout) {
+            if (_responseDirection) {
+                return _remoteDirection
             }
-
-            _waitingForDirection = false
-            return -999
+            basic.pause(20)
         }
 
-        /**
-         * Use sensors from an external micro:bit on the specified channel.
-         */
-        //% block="use sensors from external micro:bit $channel"
-        //% channel.min=1 channel.max=255
-        export function ExternalSensors(channel: number) {
-            radio.setGroup(channel)
+        _waitingForDirection = false
+        return -999
+    }
 
-            radio.onReceivedValue(function (tag, value) {
-                if (_waitingForLight && tag == "Lig") {
-                    _remoteLight = value
-                    _responseLight = true
-                    _waitingForLight = false
-                }
-                if (_waitingForTemperature && tag == "Tem") {
-                    _remoteTemperature = value
-                    _responseTemperature = true
-                    _waitingForTemperature = false
-                }
-                if (_waitingForDirection && tag == "Dir") {
-                    _remoteDirection = value
-                    _responseDirection = true
-                    _waitingForDirection = false
-                }
-                if (_waitingForSound && tag == "Sou") {
-                    _remoteSound = value
-                    _responseSound = true
-                    _waitingForSound = false
-                }
-            })
-        }
+    /**
+     * Use sensors from an external micro:bit on the specified channel.
+     */
+    //% block="use sensors from external micro:bit $channel"
+    //% channel.min=1 channel.max=255
+    //% blockId=fwd_ubit_external_sensors
+    export function ExternalSensors(channel: number) {
+        radio.setGroup(channel)
 
-        /**
-         * Executes an action when a specific gesture is received via radio.
-         */
-        //% block="when external micro:bit is $gesture"
-        //% gesture.defl=Gesture.Shake
-        export function onGestureReceived(
-            gesture: Gesture,
-            handler: () => void,
-        ): void {
-            control.onEvent(4001, EventBusValue.MICROBIT_EVT_ANY, function () {
-                let receivedGesture = control.eventValue()
-                if (receivedGesture === gesture) {
-                    handler()
-                }
-            })
-        }
+        radio.onReceivedValue(function (tag, value) {
+            if (_waitingForLight && tag == "Lig") {
+                _remoteLight = value
+                _responseLight = true
+                _waitingForLight = false
+            }
+            if (_waitingForTemperature && tag == "Tem") {
+                _remoteTemperature = value
+                _responseTemperature = true
+                _waitingForTemperature = false
+            }
+            if (_waitingForDirection && tag == "Dir") {
+                _remoteDirection = value
+                _responseDirection = true
+                _waitingForDirection = false
+            }
+            if (_waitingForSound && tag == "Sou") {
+                _remoteSound = value
+                _responseSound = true
+                _waitingForSound = false
+            }
+        })
+    }
 
-        /**
-         * Selects a radio channel to send the data requested by
-         * the micro:bit connected to the UBit.
-         */
-        //% block="share sensors with UBit $int"
-        //% int.min=1 int.max=255
-        export function shareSensorsWithUBit(int: number): void {
-            radio.setGroup(int)
+    /**
+     * Executes an action when a specific gesture is received via radio.
+     */
+    //% block="when external micro:bit is $gesture"
+    //% gesture.defl=Gesture.Shake
+    //% blockId=fwd_ubit_on_gesture_received
+    export function onGestureReceived(
+        gesture: Gesture,
+        handler: () => void,
+    ): void {
+        control.onEvent(4001, EventBusValue.MICROBIT_EVT_ANY, function () {
+            let receivedGesture = control.eventValue()
+            if (receivedGesture === gesture) {
+                handler()
+            }
+        })
+    }
 
-            radio.onReceivedString(function (msg: string) {
-                handleMessage(msg)
-            })
+    /**
+     * Selects a radio channel to send the data requested by
+     * the micro:bit connected to the UBit.
+     */
+    //% block="share sensors with UBit $int"
+    //% int.min=1 int.max=255
+    //% blockId=fwd_ubit_share_sensors_with_ubit
+    export function shareSensorsWithUBit(int: number): void {
+        radio.setGroup(int)
 
-            control.onEvent(
-                EventBusSource.MICROBIT_ID_GESTURE,
-                EventBusValue.MICROBIT_EVT_ANY,
-                function () {
-                    let gesture = control.eventValue()
-                    radio.raiseEvent(4001, gesture)
-                },
-            )
-        }
-    
+        radio.onReceivedString(function (msg: string) {
+            handleMessage(msg)
+        })
+
+        control.onEvent(
+            EventBusSource.MICROBIT_ID_GESTURE,
+            EventBusValue.MICROBIT_EVT_ANY,
+            function () {
+                let gesture = control.eventValue()
+                radio.raiseEvent(4001, gesture)
+            },
+        )
+    }
 }
