@@ -376,6 +376,8 @@ namespace fwdUbit {
     /**
      * Executes an action when the provided gesture occurs on the external micro:bit.
      * Requires that a remote connection has been established with the use sensors and share sensors blocks.
+     * @param gesture the gesture that triggers the action
+     * @param handler the action that is triggered by the gesture
      */
     //% block="when external micro:bit is $gesture"
     //% gesture.defl=Gesture.Shake
