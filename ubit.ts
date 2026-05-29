@@ -158,7 +158,7 @@ namespace fwdUbit {
     }
 
     /**
-     * Plays the text via audio on the UBit and displays it on the screen.
+     * Plays the provided text via audio on the UBit and displays it on the screen.
      */
     //% block="show string $message with audio"
     //% message.shadow="text"
@@ -171,7 +171,7 @@ namespace fwdUbit {
     }
 
     /**
-     * Plays the number via audio on the UBit and displays it on the screen.
+     * Plays the provided number via audio on the UBit and displays it on the screen.
      */
     //% block="show number $message with audio"
     //% blockId=fwd_ubit_rep_numt_with_screen
@@ -184,7 +184,7 @@ namespace fwdUbit {
     }
 
     /**
-     * Plays the written text via audio on the UBit.
+     * Plays the provided text via audio on the UBit.
      */
     //% block="play $message via audio"
     //% message.shadow="text"
@@ -196,8 +196,7 @@ namespace fwdUbit {
     }
 
     /**
-     * Connects the UBit to the desired network.
-     * If this block is not used, it will connect to the Ceibal network.
+     * Connects the UBit to the provided wifi network.
      */
     //% block="connect to network $WiFi with password $Pssw"
     //% blockId=fwd_ubit_con_wifi
@@ -209,12 +208,12 @@ namespace fwdUbit {
     }
 
     // This functionality is not supported by the firmware and has been cut from the requirements
-    // /**
-    //  * Enables/disables audio output for the
-    //  * icons shown on the micro:bit display.
-    //  */
-    // //% block="Enable icons with audio $yes"
-    // //% yes.shadow="toggleOnOff"
+    // 
+    // Enables/disables audio output for the
+    // icons shown on the micro:bit display.
+    //  
+    // block="Enable icons with audio $yes"
+    // yes.shadow="toggleOnOff"
     // export function Icon(yes: boolean) {
     //     if (yes) {
     //         loops.everyInterval(I2C_TIME_INTERVAL, function () {
@@ -226,7 +225,8 @@ namespace fwdUbit {
     // }
 
     /**
-     * Get the temperature in Celsius from a specified remote micro:bit.
+     * Get the temperature from a remote micro:bit.
+     * Requires that a remote connection has been established with the use sensors and share sensors blocks.
      */
     //% block="temperature (°C) from external micro:bit"
     //% blockId=fwd_ubit_get_temperature
@@ -253,6 +253,7 @@ namespace fwdUbit {
 
     /**
      * Get the light level from an external micro:bit.
+     * Requires that a remote connection has been established with the use sensors and share sensors blocks.
      */
     //% block="light level from external micro:bit"
     //% blockId=fwd_ubit_get_light
@@ -279,6 +280,7 @@ namespace fwdUbit {
 
     /**
      * Get the sound level from an external micro:bit.
+     * Requires that a remote connection has been established with the use sensors and share sensors blocks.
      */
     //% block="sound level from external micro:bit"
     //% blockId=fwd_ubit_get_sound
@@ -305,6 +307,7 @@ namespace fwdUbit {
 
     /**
      * Get the compass heading from an external micro:bit.
+     * Requires that a remote connection has been established with the use sensors and share sensors blocks.
      */
     //% block="compass heading from external micro:bit"
     //% blockId=fwd_ubit_get_direction
@@ -330,9 +333,11 @@ namespace fwdUbit {
     }
 
     /**
-     * Use sensors from an external micro:bit on the specified channel.
+     * Use sensors from an external micro:bit on the provided radio group.
+     * Both micro:bits need to be using the same radio group to communicate.
+     * Requires that the external micro:bit completes the remote connection with the share sensors block.
      */
-    //% block="use sensors from external micro:bit $channel"
+    //% block="use sensors from external micro:bit on $channel"
     //% channel.min=1 channel.max=255
     //% blockId=fwd_ubit_external_sensors
     export function ExternalSensors(channel: number) {
@@ -363,7 +368,8 @@ namespace fwdUbit {
     }
 
     /**
-     * Executes an action when a specific gesture is received via radio.
+     * Executes an action when the provided gesture occurs on the external micro:bit.
+     * Requires that a remote connection has been established with the use sensors and share sensors blocks.
      */
     //% block="when external micro:bit is $gesture"
     //% gesture.defl=Gesture.Shake
@@ -381,8 +387,9 @@ namespace fwdUbit {
     }
 
     /**
-     * Selects a radio channel to send the data requested by
-     * the micro:bit connected to the UBit.
+     * Share data from this micro:bit with the UBit micro:bit on the provided radio group.
+     * Both micro:bits need to be using the same radio group to communicate.
+     * Requires that the UBit micro:bit completes the remote connection with the use sensors block.
      */
     //% block="share sensors with UBit $int"
     //% int.min=1 int.max=255
