@@ -158,7 +158,8 @@ namespace fwdUbit {
     }
 
     /**
-     * Plays the provided text via audio on the UBit and displays it on the screen.
+     * Plays the provided text via audio on the UBit and displays it on the micro:bit.
+     * @param message the text to show and play
      */
     //% block="show string $message with audio"
     //% message.shadow="text"
@@ -171,7 +172,8 @@ namespace fwdUbit {
     }
 
     /**
-     * Plays the provided number via audio on the UBit and displays it on the screen.
+     * Plays the provided number via audio on the UBit and displays it on the micro:bit.
+     * @param message the number to show and play
      */
     //% block="show number $message with audio"
     //% blockId=fwd_ubit_rep_numt_with_screen
@@ -185,6 +187,7 @@ namespace fwdUbit {
 
     /**
      * Plays the provided text via audio on the UBit.
+     * @param message the text to play
      */
     //% block="play $message via audio"
     //% message.shadow="text"
@@ -196,13 +199,15 @@ namespace fwdUbit {
     }
 
     /**
-     * Connects the UBit to the provided wifi network.
+     * Connects the UBit to the provided WiFi network.
+     * @param Wifi the name of the WiFi network
+     * @param Password the password of the WiFi network
      */
-    //% block="connect to network $WiFi with password $Pssw"
+    //% block="connect to network $Wifi with password $Password"
     //% blockId=fwd_ubit_con_wifi
-    export function ConWiFi(WiFi: string, Pssw: string) {
+    export function ConWifi(Wifi: string, Password: string) {
         StopI2CScreen = 1
-        sendWiFiBuffer(WiFi, Pssw)
+        sendWiFiBuffer(Wifi, Password)
         StopI2CScreen = 0
         str = ""
     }
@@ -336,8 +341,9 @@ namespace fwdUbit {
      * Use sensors from an external micro:bit on the provided radio group.
      * Both micro:bits need to be using the same radio group to communicate.
      * Requires that the external micro:bit completes the remote connection with the share sensors block.
+     * @param channel the radio group to communicate on
      */
-    //% block="use sensors from external micro:bit on $channel"
+    //% block="use sensors from external micro:bit on radio group $channel"
     //% channel.min=1 channel.max=255
     //% blockId=fwd_ubit_external_sensors
     export function ExternalSensors(channel: number) {
@@ -390,12 +396,13 @@ namespace fwdUbit {
      * Share data from this micro:bit with the UBit micro:bit on the provided radio group.
      * Both micro:bits need to be using the same radio group to communicate.
      * Requires that the UBit micro:bit completes the remote connection with the use sensors block.
+     * @param channel the radio group to communicate on
      */
-    //% block="share sensors with UBit $int"
-    //% int.min=1 int.max=255
+    //% block="share sensors with UBit on radio group $channel"
+    //% channel.min=1 channel.max=255
     //% blockId=fwd_ubit_share_sensors_with_ubit
-    export function shareSensorsWithUBit(int: number): void {
-        radio.setGroup(int)
+    export function shareSensorsWithUBit(channel: number): void {
+        radio.setGroup(channel)
 
         radio.onReceivedString(function (msg: string) {
             handleMessage(msg)
