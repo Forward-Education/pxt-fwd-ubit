@@ -1,6 +1,6 @@
 {
     "name": "fwd-ubit",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "description": "This extension supports ubit, an accessibility device for the micro:bit.",
     "dependencies": {
         "core": "*",
