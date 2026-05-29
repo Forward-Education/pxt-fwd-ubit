@@ -14,7 +14,7 @@
         "_locales/es-ES/fwd-ubit-jsdoc-strings.json"
     ],
     "testFiles": [
-        "test.ts"
+        "tests/test.ts"
     ],
     "targetVersions": {
         "target": "8.0.22",
