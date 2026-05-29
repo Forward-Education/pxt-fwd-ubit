@@ -161,7 +161,7 @@ namespace fwdUbit {
         /**
          * Plays the text via audio on the UBit and displays it on the screen.
          */
-        //% block="Show string $message with audio"
+        //% block="show string $message with audio"
         //% message.shadow="text"
         export function RepTextwithScreen(message: string) {
             StopI2CScreen = 1
@@ -173,7 +173,7 @@ namespace fwdUbit {
         /**
          * Plays the number via audio on the UBit and displays it on the screen.
          */
-        //% block="Show number $message with audio"
+        //% block="show number $message with audio"
         export function RepNumtwithScreen(message: number) {
             let textString = message.toString()
             StopI2CScreen = 1
@@ -185,7 +185,7 @@ namespace fwdUbit {
         /**
          * Plays the written text via audio on the UBit.
          */
-        //% block="Play $message via audio"
+        //% block="play $message via audio"
         //% message.shadow="text"
         export function RepText(message: string) {
             StopI2CScreen = 1
@@ -197,7 +197,7 @@ namespace fwdUbit {
          * Connects the UBit to the desired network.
          * If this block is not used, it will connect to the Ceibal network.
          */
-        //% block="Connect to network $WiFi with password $Pssw"
+        //% block="connect to network $WiFi with password $Pssw"
         export function ConWiFi(WiFi: string, Pssw: string) {
             StopI2CScreen = 1
             sendWiFiBuffer(WiFi, Pssw)
@@ -224,7 +224,7 @@ namespace fwdUbit {
         /**
          * Get the temperature in Celsius from a specified remote micro:bit.
          */
-        //% block="Temperature (°C) from external micro:bit"
+        //% block="temperature (°C) from external micro:bit"
         export function getTemperature(): number {
             _remoteTemperature = -999
             _waitingForTemperature = true
@@ -249,7 +249,7 @@ namespace fwdUbit {
         /**
          * Get the light level from an external micro:bit.
          */
-        //% block="Light level from external micro:bit"
+        //% block="light level from external micro:bit"
         export function getLight(): number {
             _remoteLight = -999
             _waitingForLight = true
@@ -274,7 +274,7 @@ namespace fwdUbit {
         /**
          * Get the sound level from an external micro:bit.
          */
-        //% block="Sound level from external micro:bit"
+        //% block="sound level from external micro:bit"
         export function getSound(): number {
             _remoteSound = -999
             _waitingForSound = true
@@ -299,7 +299,7 @@ namespace fwdUbit {
         /**
          * Get the compass heading from an external micro:bit.
          */
-        //% block="Compass heading from external micro:bit"
+        //% block="compass heading from external micro:bit"
         export function getDirection(): number {
             _remoteDirection = -999
             _waitingForDirection = true
@@ -324,7 +324,7 @@ namespace fwdUbit {
         /**
          * Use sensors from an external micro:bit on the specified channel.
          */
-        //% block="Use sensors from external micro:bit $channel"
+        //% block="use sensors from external micro:bit $channel"
         //% channel.min=1 channel.max=255
         export function ExternalSensors(channel: number) {
             radio.setGroup(channel)
@@ -356,7 +356,7 @@ namespace fwdUbit {
         /**
          * Executes an action when a specific gesture is received via radio.
          */
-        //% block="When external micro:bit is $gesture"
+        //% block="when external micro:bit is $gesture"
         //% gesture.defl=Gesture.Shake
         export function onGestureReceived(
             gesture: Gesture,
@@ -374,7 +374,7 @@ namespace fwdUbit {
          * Selects a radio channel to send the data requested by
          * the micro:bit connected to the UBit.
          */
-        //% block="Share sensors with UBit $int"
+        //% block="share sensors with UBit $int"
         //% int.min=1 int.max=255
         export function shareSensorsWithUBit(int: number): void {
             radio.setGroup(int)
