@@ -7,6 +7,8 @@ The UBit is a micro:bit accessibility device developed in partnership between Fo
 - direct communication with the connected micro:bit and blocks to communicate with a secondary micro:bit remotely
 - a Jacdac port to attach Jacdac micro:bit accessories
 
+Available for purchase at [forwardedu.com](https://forwardedu.com/products/ubit-accessory-for-micro-bit). Learning content is available at [learn.forwardedu.com](https://learn.forwardedu.com/).
+
 ## Example Usage
 
 This program uses the regular micro:bit A and B button blocks, but with a UBit you can activate those button events using the larger A and B buttons on the UBit. The buttons add 1 to counter or subtract 1 from counter. Afterwards, the resulting value is both shown on the micro:bit screen and read aloud by the UBit.
