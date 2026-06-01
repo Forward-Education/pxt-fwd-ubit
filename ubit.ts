@@ -163,8 +163,8 @@ namespace fwdUbit {
      */
     //% block="show string $message with audio"
     //% message.shadow="text"
-    //% blockId=fwd_ubit_rep_text_with_screen
-    export function RepTextwithScreen(message: string) {
+    //% blockId=fwd_ubit_show_and_play_text
+    export function showAndPlayText(message: string) {
         StopI2CScreen = 1
         sendTextBuffer(message)
         basic.showString(message)
@@ -176,8 +176,8 @@ namespace fwdUbit {
      * @param message the number to show and play
      */
     //% block="show number $message with audio"
-    //% blockId=fwd_ubit_rep_numt_with_screen
-    export function RepNumtwithScreen(message: number) {
+    //% blockId=fwd_ubit_show_and_play_number
+    export function showAndPlayNumber(message: number) {
         let textString = message.toString()
         StopI2CScreen = 1
         sendTextBuffer(textString)
@@ -191,8 +191,8 @@ namespace fwdUbit {
      */
     //% block="play $message via audio"
     //% message.shadow="text"
-    //% blockId=fwd_ubit_rep_text
-    export function RepText(message: string) {
+    //% blockId=fwd_ubit_play_text
+    export function playText(message: string) {
         StopI2CScreen = 1
         sendTextBuffer(message)
         StopI2CScreen = 0
@@ -200,23 +200,23 @@ namespace fwdUbit {
 
     /**
      * Connects the UBit to the provided WiFi network.
-     * @param Wifi the name of the WiFi network
-     * @param Password the password of the WiFi network
+     * @param wifi the name of the WiFi network
+     * @param password the password of the WiFi network
      */
-    //% block="connect to network $Wifi with password $Password"
-    //% blockId=fwd_ubit_con_wifi
-    export function ConWifi(Wifi: string, Password: string) {
+    //% block="connect to network $wifi with password $password"
+    //% blockId=fwd_ubit_connect_wifi
+    export function connectWifi(wifi: string, password: string) {
         StopI2CScreen = 1
-        sendWiFiBuffer(Wifi, Password)
+        sendWiFiBuffer(wifi, password)
         StopI2CScreen = 0
         str = ""
     }
 
     // This functionality is not supported by the firmware and has been cut from the requirements
-    // 
+    //
     // Enables/disables audio output for the
     // icons shown on the micro:bit display.
-    //  
+    //
     // block="Enable icons with audio $yes"
     // yes.shadow="toggleOnOff"
     // export function Icon(yes: boolean) {
@@ -234,8 +234,8 @@ namespace fwdUbit {
      * Requires that a remote connection has been established with the use sensors and share sensors blocks.
      */
     //% block="temperature (°C) from external micro:bit"
-    //% blockId=fwd_ubit_get_temperature
-    export function getTemperature(): number {
+    //% blockId=fwd_ubit_temperature
+    export function temperature(): number {
         _remoteTemperature = -999
         _waitingForTemperature = true
         _responseTemperature = false
@@ -261,8 +261,8 @@ namespace fwdUbit {
      * Requires that a remote connection has been established with the use sensors and share sensors blocks.
      */
     //% block="light level from external micro:bit"
-    //% blockId=fwd_ubit_get_light
-    export function getLight(): number {
+    //% blockId=fwd_ubit_light_level
+    export function lightLevel(): number {
         _remoteLight = -999
         _waitingForLight = true
         _responseLight = false
@@ -288,8 +288,8 @@ namespace fwdUbit {
      * Requires that a remote connection has been established with the use sensors and share sensors blocks.
      */
     //% block="sound level from external micro:bit"
-    //% blockId=fwd_ubit_get_sound
-    export function getSound(): number {
+    //% blockId=fwd_ubit_sound_level
+    export function soundLevel(): number {
         _remoteSound = -999
         _waitingForSound = true
         _responseSound = false
@@ -315,8 +315,8 @@ namespace fwdUbit {
      * Requires that a remote connection has been established with the use sensors and share sensors blocks.
      */
     //% block="compass heading from external micro:bit"
-    //% blockId=fwd_ubit_get_direction
-    export function getDirection(): number {
+    //% blockId=fwd_ubit_direction
+    export function direction(): number {
         _remoteDirection = -999
         _waitingForDirection = true
         _responseDirection = false
@@ -345,8 +345,8 @@ namespace fwdUbit {
      */
     //% block="use sensors from external micro:bit on radio group $channel"
     //% channel.min=1 channel.max=255
-    //% blockId=fwd_ubit_external_sensors
-    export function ExternalSensors(channel: number) {
+    //% blockId=fwd_ubit_setup_external_sensors
+    export function setupExternalSensors(channel: number) {
         radio.setGroup(channel)
 
         radio.onReceivedValue(function (tag, value) {
