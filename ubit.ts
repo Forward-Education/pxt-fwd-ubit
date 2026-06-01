@@ -164,7 +164,7 @@ namespace fwdUbit {
     //% block="show string $message with audio"
     //% message.shadow="text"
     //% blockId=fwd_ubit_show_and_play_text
-    export function showAndPlayText(message: string) {
+    export function showAndPlayText(message: string): void {
         StopI2CScreen = 1
         sendTextBuffer(message)
         basic.showString(message)
@@ -177,7 +177,7 @@ namespace fwdUbit {
      */
     //% block="show number $message with audio"
     //% blockId=fwd_ubit_show_and_play_number
-    export function showAndPlayNumber(message: number) {
+    export function showAndPlayNumber(message: number): void {
         let textString = message.toString()
         StopI2CScreen = 1
         sendTextBuffer(textString)
@@ -192,7 +192,7 @@ namespace fwdUbit {
     //% block="play $message via audio"
     //% message.shadow="text"
     //% blockId=fwd_ubit_play_text
-    export function playText(message: string) {
+    export function playText(message: string): void {
         StopI2CScreen = 1
         sendTextBuffer(message)
         StopI2CScreen = 0
@@ -205,7 +205,7 @@ namespace fwdUbit {
      */
     //% block="connect to network $wifi with password $password"
     //% blockId=fwd_ubit_connect_wifi
-    export function connectWifi(wifi: string, password: string) {
+    export function connectWifi(wifi: string, password: string): void {
         StopI2CScreen = 1
         sendWiFiBuffer(wifi, password)
         StopI2CScreen = 0
@@ -346,7 +346,7 @@ namespace fwdUbit {
     //% block="use sensors from external micro:bit on radio group $channel"
     //% channel.min=1 channel.max=255
     //% blockId=fwd_ubit_setup_external_sensors
-    export function setupExternalSensors(channel: number) {
+    export function setupExternalSensors(channel: number): void {
         radio.setGroup(channel)
 
         radio.onReceivedValue(function (tag, value) {
