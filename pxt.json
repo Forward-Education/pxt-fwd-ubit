@@ -9,9 +9,7 @@
     },
     "files": [
         "README.md",
-        "ubit.ts",
-        "_locales/es-ES/fwd-ubit-strings.json",
-        "_locales/es-ES/fwd-ubit-jsdoc-strings.json"
+        "ubit.ts"
     ],
     "testFiles": [
         "tests/test.ts"
