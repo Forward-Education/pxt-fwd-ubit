@@ -16,11 +16,11 @@ This program uses the regular micro:bit A and B button blocks, but with a UBit y
 ```blocks
 input.onButtonPressed(Button.A, function () {
     counter += 1
-    UBit.RepNumtwithScreen(counter)
+    fwdUbit.showAndPlayNumber(counter)
 })
 input.onButtonPressed(Button.B, function () {
     counter += -1
-    UBit.RepNumtwithScreen(counter)
+    fwdUbit.showAndPlayNumber(counter)
 })
 let counter = 0
 counter = 0
@@ -31,14 +31,14 @@ This program takes advantage of radio communication between the connnected micro
 Receiving micro:bit:
 
 ```blocks
-UBit.onGestureReceived(Gesture.Shake, function () {
-    basic.showNumber(UBit.getTemperature())
+fwdUbit.onGestureReceived(Gesture.Shake, function () {
+    basic.showNumber(fwdUbit.temperature())
 })
-UBit.ExternalSensors(7)
+fwdUbit.setupExternalSensors(7)
 ```
 
 Sending micro:bit:
 
 ```blocks
-UBit.shareSensorsWithUBit(7)
+fwdUbit.shareSensorsWithUBit(7)
 ```
