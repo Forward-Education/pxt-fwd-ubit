@@ -4,7 +4,7 @@
     "description": "This extension supports ubit, an accessibility device for the micro:bit.",
     "license": "MIT",
     "dependencies": {
-        "fwd-ubit-module": "github:Forward-Education/pxt-fwd-modules/fwd-ubit#v1.2.0"
+        "fwd-ubit-module": "github:Forward-Education/pxt-fwd-modules/fwd-ubit#v1.2.1"
     },
     "files": [
         "README.md"
